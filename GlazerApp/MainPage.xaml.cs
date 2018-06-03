@@ -22,9 +22,44 @@ namespace GlazerApp
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private double width;
+        private double height;
+
         public MainPage()
         {
             this.InitializeComponent();
+            tintType.ItemsSource = Enum.GetValues(typeof(Tint));
+        }
+
+
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+        }
+
+        private void heightInput_TextChanged(object sender, TextChangedEventArgs e)
+        {
+        }
+
+        private void widthInput_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            width = widthInput.Value;
+        }
+
+        private void heightInput_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            height = heightInput.Value;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            DateTime date = DateTime.Today;
+            widthOut.Text = "Width: " + width.ToString() + " meters";
+            heightOut.Text = "Height: " + height.ToString() + " meters";
+            tintOut.Text = "Tint: " + tintType.SelectedValue;
+            lengthOut.Text = "Wood length: " + (2 * (width + height) * 3.25) + " square meters";
+            areaOut.Text = "Glass area: " + (2 * (width * height)) + " square meters";
+            dateOut.Text = "Date: " + date.ToString("d");
         }
     }
 }
